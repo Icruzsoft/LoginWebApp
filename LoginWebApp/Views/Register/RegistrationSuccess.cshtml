@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Registro Exitoso";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Exitoso</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 100px;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #DBDBDB;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+            .logo img {
+                max-width: 200px;
+                margin: 0 auto;
+                display: block;
+            }
+
+        .email-container h1 {
+            color: #6181C7;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            padding: 12px;
+            border-radius: 12px;
+            background-color: #6181C7;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="email-container">
+        <div class="logo">
+            <img src="https://www.communitylab.com.mx/Logo.png" alt="Community LAB Logo">
+        </div>
+        <h1>Registro Exitoso</h1>
+        <p>Felicidades, su cuenta ha sido creada exitosamente. Por favor, revise su correo electrónico para confirmar su cuenta.</p>
+        <p>Puede iniciar sesión una vez que su cuenta haya sido confirmada.</p>
+
+        <a href="@Url.Action("Login", "Authentication")" class="action-button">Iniciar Sesión</a>
+
+        <p>Muchas Gracias.</p>
+    </div>
+
+</body>
+</html>

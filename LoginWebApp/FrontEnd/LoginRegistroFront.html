@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Autenticación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 100px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #DBDBDB;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+            .logo img {
+                max-width: 360px;
+                margin: 0 auto;
+                display: block;
+            }
+
+        .title {
+            color: #6181C7;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group input[type="password"] {
+                width: calc(100% - 40px);
+                margin: 10px;
+                padding: 10px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 1px solid #dddddd;
+            }
+
+            .form-group input[type="submit"],
+            .form-group button {
+                width: 100%;
+                padding: 12px;
+                font-size: 15px;
+                border-radius: 10px;
+                border: none;
+                background-color: #6181C7;
+                color: white;
+                cursor: pointer;
+            }
+
+                .form-group input[type="submit"]:hover,
+                .form-group button:hover {
+                    background-color: #4cae4c;
+                }
+
+            .form-group a {
+                text-decoration: none;
+                color: #6181C7;
+                display: block;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+        }
+
+            .btn-row button {
+                width: calc(50% - 5px);
+                padding: 10px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: none;
+                background-color: #337ab7;
+                color: white;
+                cursor: pointer;
+            }
+
+                .btn-row button:hover {
+                    background-color: #286090;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <img src="https://www.communitylab.com.mx/Logo.png" alt="Community LAB Logo">
+        </div>
+
+        <div id="loginPanel" class="card">
+            <div class="title">Iniciar Sesión</div>
+            <form>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required style="width: 80%; padding-right: 0px;">
+                </div>
+                <div class="form-group" style="position: relative;">
+                    <input type="password" id="password" placeholder="Contraseña" required style="width: 80%; padding-right: 0px;">
+                    <input type="checkbox" id="togglePassword" style="position: absolute; right: 10px; top: 10px;" onclick="togglePasswordVisibility('password')">
+                    <label for="togglePassword" style="position: absolute; right: 8px; top: 27px; cursor: pointer;">👁️</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Iniciar Sesión" required style="width: 30%; padding-right: 0px;">
+                </div>
+                <div class="form-group">
+                    <a href="#" onclick="toggleForms()">¿No tienes cuenta? Regístrate</a>
+                </div>
+            </form>
+        </div>
+
+        <div id="registerPanel" class="card" style="display: none;">
+            <div class="title">Regístrate</div>
+            <div class="btn-row">
+                <button onclick="showCustomerForm()">Cliente</button>
+                <button onclick="showExpertForm()">Experto</button>
+            </div>
+            <div id="customerForm" style="display: none;">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre de Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Número de Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Contraseña" required id="passwordCustomer">
+                        <input type="checkbox" id="togglePasswordCustomer" onclick="togglePasswordVisibility('passwordCustomer', 'confirmPasswordCustomer')">
+                        <label for="togglePasswordCustomer">Mostrar Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Confirmar Contraseña" required id="confirmPasswordCustomer">
+                        <input type="checkbox" id="togglePasswordConfirmCustomer" onclick="togglePasswordVisibility('confirmPasswordCustomer', 'passwordCustomer')">
+                        <label for="togglePasswordConfirmCustomer">Mostrar Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="termsAccepted" required>
+                        <label for="termsAccepted">Acepto los Términos y Condiciones</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Registro Cliente">
+                    </div>
+                </form>
+            </div>
+            <div id="expertForm" style="display: none;">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre de Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Número de Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Contraseña" required id="passwordCustomer">
+                        <input type="checkbox" id="togglePasswordCustomer" onclick="togglePasswordVisibility('passwordCustomer', 'confirmPasswordCustomer')">
+                        <label for="togglePasswordCustomer">Mostrar Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Confirmar Contraseña" required id="confirmPasswordCustomer">
+                        <input type="checkbox" id="togglePasswordConfirmCustomer" onclick="togglePasswordVisibility('confirmPasswordCustomer', 'passwordCustomer')">
+                        <label for="togglePasswordConfirmCustomer">Mostrar Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Ciudad" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Estado" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="País" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nivel de Educación" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Titulo o Profesion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv">Subir CV (.pdf):</label>
+                        <input type="file" id="cv" name="cv" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="termsAccepted" required>
+                        <label for="termsAccepted">Acepto los Términos y Condiciones</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Registro Experto">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function togglePasswordVisibility(inputId) {
+        var passwordInput = document.getElementById(inputId);
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+
+    function toggleForms() {
+        var loginPanel = document.getElementById('loginPanel');
+        var registerPanel = document.getElementById('registerPanel');
+        if (loginPanel.style.display === 'none') {
+            loginPanel.style.display = 'block';
+            registerPanel.style.display = 'none';
+        } else {
+            loginPanel.style.display = 'none';
+            registerPanel.style.display = 'block';
+        }
+    }
+
+    function showCustomerForm() {
+        var customerForm = document.getElementById('customerForm');
+        var expertForm = document.getElementById('expertForm');
+        customerForm.style.display = 'block';
+        expertForm.style.display = 'none';
+    }
+
+    function showExpertForm() {
+        var customerForm = document.getElementById('customerForm');
+        var expertForm = document.getElementById('expertForm');
+        customerForm.style.display = 'none';
+        expertForm.style.display = 'block';
+    }
+    </script>
+</body>
+</html>

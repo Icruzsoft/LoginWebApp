@@ -1,0 +1,56 @@
+﻿@model LoginWebApp.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="row justify-content-center mt-5">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label>Correo</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="mb-3">
+                            <label>Contraseña</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        @if (ViewBag.Message != null)
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.Message
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <div class="d-grid">
+                                <button class="btn btn-primary" type="submit">Ingresar</button>
+                                <a class="btn btn-link" href="@Url.Action("Register", "Register")">No tienes una cuenta? Regístrate!</a>
+                                <a class="btn btn-link" href="@Url.Action("ForgotPassword", "Password")">¿Has olvidado tu contraseña?</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

@@ -1,0 +1,2 @@
+C:\Users\iCruzsoft\source\repos\LoginWebApp\LoginWebApp\obj\Debug\LoginWebApp.csproj.AssemblyReference.cache
+C:\Users\iCruzsoft\source\repos\LoginWebApp\LoginWebApp\obj\Debug\LoginWebApp.csproj.CoreCompileInputs.cache
